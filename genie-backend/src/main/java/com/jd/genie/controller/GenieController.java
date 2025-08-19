@@ -8,6 +8,8 @@ import com.jd.genie.agent.printer.Printer;
 import com.jd.genie.agent.printer.SSEPrinter;
 import com.jd.genie.agent.tool.ToolCollection;
 import com.jd.genie.agent.tool.common.CodeInterpreterTool;
+import com.jd.genie.agent.tool.common.CogneeMemoryTool;
+import com.jd.genie.agent.tool.common.AgentRouterTool;
 import com.jd.genie.agent.tool.common.DeepSearchTool;
 import com.jd.genie.agent.tool.common.FileTool;
 import com.jd.genie.agent.tool.common.ReportTool;
@@ -187,6 +189,17 @@ public class GenieController {
         FileTool fileTool = new FileTool();
         fileTool.setAgentContext(agentContext);
         toolCollection.addTool(fileTool);
+
+        // cognee 记忆工具
+        CogneeMemoryTool cogneeMemoryTool = new CogneeMemoryTool();
+        cogneeMemoryTool.setAgentContext(agentContext);
+        toolCollection.addTool(cogneeMemoryTool);
+
+        // 智能体路由工具
+        AgentRouterTool agentRouterTool = new AgentRouterTool();
+        agentRouterTool.setAgentContext(agentContext);
+        toolCollection.addTool(agentRouterTool);
+
 
         // default tool
         List<String> agentToolList = Arrays.asList(genieConfig.getMultiAgentToolListMap()
